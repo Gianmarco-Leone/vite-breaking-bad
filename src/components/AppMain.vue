@@ -1,22 +1,17 @@
 <script>
-import axios from "axios";
+// -STATE- Importo file reattivo store.js
+import { store } from "../data/store.js";
+
 import AppCard from "./AppCard.vue";
 
 export default {
   data() {
     return {
-      cards: [],
+      store,
     };
   },
   components: {
     AppCard,
-  },
-  created() {
-    axios
-      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0")
-      .then((response) => {
-        this.cards = response.data.data;
-      });
   },
 };
 </script>
@@ -24,6 +19,7 @@ export default {
 <template>
   <main>
     <div class="container">
+      <!-- Selezione categoria carte -->
       <select
         name="type"
         id="type"
@@ -42,26 +38,15 @@ export default {
               <span class="fw-bold text-white">Found 39 cards</span>
             </div>
 
-            <!-- Componente Card -->
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 gy-3 mb-3">
+              <!-- Componente Card -->
               <AppCard
-                v-for="card in cards"
+                v-for="card in store.cards"
                 :key="card.id"
                 :pic="card.card_images[0].image_url"
                 :name="card.name"
                 :type="card.archetype"
               />
-              <!-- <div class="col" v-for="card in cards">
-                <div class="my-card">
-                  <img :src="card.card_images[0].image_url" class="img-fluid" />
-                  <div class="my-card-text text-center">
-                    <p class="fw-semibold text-white pt-1">
-                      {{ card.name }}
-                    </p>
-                    <span>{{ card.archetype }}</span>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -88,11 +73,6 @@ main {
         display: inline-block;
         padding: 1rem;
       }
-    }
-
-    .my-card-text {
-      min-height: 6rem;
-      background-color: $primary-color;
     }
   }
 }

@@ -1,5 +1,6 @@
 <script>
 export default {
+  // Trasmetto solo i dati che mi servono da AppMain
   props: {
     pic: String,
     name: String,
@@ -22,4 +23,10 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use "../assets/scss/partials/variables.scss" as *;
+.my-card-text {
+  min-height: 6rem;
+  background-color: $primary-color;
+}
+</style>
