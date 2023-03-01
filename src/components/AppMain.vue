@@ -1,11 +1,15 @@
 <script>
 import axios from "axios";
+import AppCard from "./AppCard.vue";
 
 export default {
   data() {
     return {
       cards: [],
     };
+  },
+  components: {
+    AppCard,
   },
   created() {
     axios
@@ -30,14 +34,24 @@ export default {
 
       <!-- Riquadro bianco centrale -->
       <div class="content-cards">
+        <!-- Contenitore cards -->
         <div class="row justify-content-center">
           <div class="col-11">
+            <!-- Facia nera con testo bianco -->
             <div class="content-cards-label">
               <span class="fw-bold text-white">Found 39 cards</span>
             </div>
 
+            <!-- Componente Card -->
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 gy-3 mb-3">
-              <div class="col" v-for="card in cards">
+              <AppCard
+                v-for="card in cards"
+                :key="card.id"
+                :pic="card.card_images[0].image_url"
+                :name="card.name"
+                :type="card.archetype"
+              />
+              <!-- <div class="col" v-for="card in cards">
                 <div class="my-card">
                   <img :src="card.card_images[0].image_url" class="img-fluid" />
                   <div class="my-card-text text-center">
@@ -47,7 +61,7 @@ export default {
                     <span>{{ card.archetype }}</span>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
