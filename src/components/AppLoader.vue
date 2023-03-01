@@ -18,7 +18,13 @@ export default {};
 
 <style lang="scss" scoped>
 div.d-flex {
-  height: calc(100vh - 80px);
+  //   height: calc(100vh - 80px);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(200, 200, 200, 0.5);
 
   .circle {
     animation: rotate 1s linear infinite;

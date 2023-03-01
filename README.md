@@ -30,3 +30,5 @@ Con i dati restituiti stampate una card per ogni carta, trasferendo i dati trami
 ## Bonus:
 
 Creare un componente loader da visualizzare fino a quando i risultati non siano pronti.
+
+![Screenshot](./src/assets/my_screenshot_loader.png)
