@@ -19,9 +19,32 @@ export default {
     AppMain,
   },
   created() {
-    axios.get(store.endpoint).then((response) => {
-      store.cards = response.data.data;
-    });
+    // Caricamento pagina
+    store.isLoading = true;
+
+    axios
+      // Recupero informazioni
+      .get(store.endpoint)
+
+      // Se la chiamata è ok
+      .then((response) => {
+        // Salvo i risultati
+        store.cards = response.data.data;
+      })
+
+      // Se la chiamata ha un errore
+      .catch((error) => {
+        // Svuoto l'array per evitare problemi
+        store.cards = [];
+        // Segnalo errore
+        console.error(error);
+      })
+
+      // A prescindere dall'esito della richiesta
+      .finally(() => {
+        // Stoppo caricamento pagina
+        store.isLoading = false;
+      });
   },
 };
 </script>

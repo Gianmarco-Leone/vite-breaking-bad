@@ -3,6 +3,7 @@
 import { store } from "../data/store.js";
 
 import AppCard from "./AppCard.vue";
+import AppLoader from "./AppLoader.vue";
 
 export default {
   data() {
@@ -12,13 +13,14 @@ export default {
   },
   components: {
     AppCard,
+    AppLoader,
   },
 };
 </script>
 
 <template>
   <main>
-    <div class="container">
+    <div v-if="!store.isLoading" class="container">
       <!-- Selezione categoria carte -->
       <select
         name="type"
@@ -52,6 +54,8 @@ export default {
         </div>
       </div>
     </div>
+
+    <AppLoader v-else />
   </main>
 </template>
 
