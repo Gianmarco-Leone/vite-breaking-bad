@@ -2,6 +2,9 @@
 // -STATE- Importo file reattivo store.js
 import { store } from "../data/store.js";
 
+// Importo axios per fare chiamata API
+import axios from "axios";
+
 import AppCard from "./AppCard.vue";
 import AppLoader from "./AppLoader.vue";
 import BaseSearch from "./BaseSearch.vue";
@@ -17,6 +20,47 @@ export default {
     AppLoader,
     BaseSearch,
   },
+  methods: {
+    // Creo funzione che recupera cards a seconda dell'url che passo come parametro
+    fetchCards(url) {
+      // Caricamento pagina
+      store.isLoading = true;
+
+      axios
+        // Recupero informazioni
+        .get(url)
+
+        // Se la chiamata è ok
+        .then((response) => {
+          // Salvo i risultati
+          store.cards = response.data.data;
+        })
+
+        // Se la chiamata ha un errore
+        .catch((error) => {
+          // Svuoto l'array per evitare problemi
+          store.cards = [];
+          // Segnalo errore
+          console.error(error);
+        })
+
+        // A prescindere dall'esito della richiesta
+        .finally(() => {
+          // Stoppo caricamento pagina
+          store.isLoading = false;
+        });
+    },
+
+    // Funzione per recuperare carte filtrate
+    fetchFilteredCards(term) {
+      this.fetchCards(`${this.store.endpoint}&type=${term}`);
+    },
+  },
+
+  // Invoco sulla creazione della pagina la funzione che recupera cards
+  created() {
+    this.fetchCards(this.store.endpoint);
+  },
 };
 </script>
 
@@ -24,7 +68,7 @@ export default {
   <main>
     <div v-if="!store.isLoading" class="container">
       <!-- Selezione categoria carte -->
-      <BaseSearch />
+      <BaseSearch @on-filter="fetchFilteredCards" />
 
       <!-- Riquadro bianco centrale -->
       <div class="content-cards">
