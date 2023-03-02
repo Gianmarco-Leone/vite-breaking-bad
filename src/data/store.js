@@ -6,4 +6,7 @@ export const store = reactive({
 
   // Bonus 1 - Caricamento pagina
   isLoading: false,
+
+  // Bonus 2
+  numberResults: "",
 });

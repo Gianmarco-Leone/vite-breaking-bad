@@ -34,8 +34,14 @@ Quando l'utente seleziona un valore dalla lista, viene effettuata una chiamata a
 
 ![Screenshot](./src/assets/Screenshot_input_tag.png)
 
-## Bonus:
+## Bonus 1:
 
 Creare un componente loader da visualizzare fino a quando i risultati non siano pronti.
 
 ![Screenshot](./src/assets/my_screenshot_loader.png)
+
+## Bonus 2:
+
+Creare un componente che mostri il numero totale di risultati ottenuti.
+
+![Screenshot](./src/assets/Screenshot_bonus_2.png)

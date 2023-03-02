@@ -8,6 +8,7 @@ import axios from "axios";
 import AppCard from "./AppCard.vue";
 import AppLoader from "./AppLoader.vue";
 import BaseSearch from "./BaseSearch.vue";
+import ShowResults from "./ShowResults.vue";
 
 export default {
   data() {
@@ -19,6 +20,7 @@ export default {
     AppCard,
     AppLoader,
     BaseSearch,
+    ShowResults,
   },
   methods: {
     // Creo funzione che recupera cards a seconda dell'url che passo come parametro
@@ -34,6 +36,9 @@ export default {
         .then((response) => {
           // Salvo i risultati
           store.cards = response.data.data;
+
+          // Bonus 2 - Salvo numero cards totali
+          store.numberResults = response.data.meta.total_rows;
         })
 
         // Se la chiamata ha un errore
@@ -76,9 +81,7 @@ export default {
         <div class="row justify-content-center">
           <div class="col-11">
             <!-- Facia nera con testo bianco -->
-            <div class="content-cards-label">
-              <span class="fw-bold text-white">Found 39 cards</span>
-            </div>
+            <ShowResults />
 
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 gy-3 mb-3">
               <!-- Componente Card -->
@@ -108,16 +111,6 @@ main {
 
   .content-cards {
     background-color: #fefefe;
-
-    .content-cards-label {
-      background-color: #333;
-      margin-top: 3rem;
-
-      span.text-white {
-        display: inline-block;
-        padding: 1rem;
-      }
-    }
   }
 }
 </style>
