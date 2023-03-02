@@ -68,5 +68,11 @@ export default {
   background-color: #333;
   color: #fff;
   margin-left: 2rem;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #fff;
+    color: #333;
+  }
 }
 </style>

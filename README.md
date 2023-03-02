@@ -21,11 +21,18 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 - Vite
 - Axios
 
-## OBIETTIVO:
+## OBIETTIVO (Giorno 1):
 
 Definire i componenti necessari per strutturare il layout.
 Al caricamento della pagina, effettuate una chiamata all'API di Yu-Gi-Oh.
 Con i dati restituiti stampate una card per ogni carta, trasferendo i dati tramite `State`.
+
+## OBIETTIVO (Giorno 2):
+
+Aggiungere una select per filtrare i risultati in base al tipo delle carte.
+Quando l'utente seleziona un valore dalla lista, viene effettuata una chiamata alle API con il tipo selezionato.
+
+![Screenshot](./src/assets/Screenshot_input_tag.png)
 
 ## Bonus:
 
