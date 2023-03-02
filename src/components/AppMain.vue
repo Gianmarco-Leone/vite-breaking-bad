@@ -4,6 +4,7 @@ import { store } from "../data/store.js";
 
 import AppCard from "./AppCard.vue";
 import AppLoader from "./AppLoader.vue";
+import BaseSearch from "./BaseSearch.vue";
 
 export default {
   data() {
@@ -14,6 +15,7 @@ export default {
   components: {
     AppCard,
     AppLoader,
+    BaseSearch,
   },
 };
 </script>
@@ -22,13 +24,7 @@ export default {
   <main>
     <div v-if="!store.isLoading" class="container">
       <!-- Selezione categoria carte -->
-      <select
-        name="type"
-        id="type"
-        class="ms-3 my-3 ps-2 pe-5 py-2 fw-semibold rounded border-0"
-      >
-        <option value="alien" selected>Alien</option>
-      </select>
+      <BaseSearch />
 
       <!-- Riquadro bianco centrale -->
       <div class="content-cards">
@@ -47,7 +43,7 @@ export default {
                 :key="card.id"
                 :pic="card.card_images[0].image_url"
                 :name="card.name"
-                :type="card.archetype"
+                :type="card.type"
               />
             </div>
           </div>
