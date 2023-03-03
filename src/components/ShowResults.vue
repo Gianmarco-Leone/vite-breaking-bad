@@ -16,8 +16,8 @@ export default {
 <template>
   <div class="content-cards-label">
     <span class="fw-bold text-white"
-      >Found {{ store.numberResults }} cards</span
-    >
+      >Found {{ store.numberResults }} cards for "{{ store.cards[0].type }}"
+    </span>
   </div>
 </template>
 
